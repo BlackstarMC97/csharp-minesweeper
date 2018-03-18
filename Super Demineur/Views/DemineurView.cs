@@ -350,11 +350,6 @@ namespace WinformsMvc.Example.Views
             revelerPlateau();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            metroTextBox1.Text = (int.Parse(metroTextBox1.Text) + 1).ToString();
-        }
-
         private void DemineurView_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.ExitThread();
@@ -405,6 +400,11 @@ namespace WinformsMvc.Example.Views
         {
             InitialiserCases();
             GenererBombes();
+        }
+
+        private void decompteHorloge(object sender, EventArgs e)
+        {
+            metroTextBox1.Text = (int.Parse(metroTextBox1.Text) + 1).ToString();
         }
     }
 }
