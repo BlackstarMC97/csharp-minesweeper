@@ -16,8 +16,8 @@ Pour l'installation, vous avez besoin des technologies suivantes :
 
 
 ##  Captures d'écran du jeu
-![Image du demineur](https://raw.githubusercontent.com/BlackstarMC97/dit_mboageek_pompelogique/master/PompeEssence%20Logique/bin/pompecircuit.JPG)
+![Image du demineur](https://raw.githubusercontent.com/BlackstarMC97/dit_mboageek_demineur/master/Super%20Demineur/Images/demineur1.JPG)
 
-![Image du demineur](https://raw.githubusercontent.com/BlackstarMC97/dit_mboageek_pompelogique/master/PompeEssence%20Logique/bin/pompecircuit.JPG)
+![Image du demineur](https://raw.githubusercontent.com/BlackstarMC97/dit_mboageek_demineur/master/Super%20Demineur/Images/demineur4.JPG)
 
-![Image du demineur](https://raw.githubusercontent.com/BlackstarMC97/dit_mboageek_pompelogique/master/PompeEssence%20Logique/bin/pompecircuit.JPG)
+![Image du demineur](https://raw.githubusercontent.com/BlackstarMC97/dit_mboageek_demineur/master/Super%20Demineur/Images/demineur5.JPG)
