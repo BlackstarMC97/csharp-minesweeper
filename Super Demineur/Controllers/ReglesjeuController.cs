@@ -7,14 +7,14 @@ using WinformsMvc.Example.Views;
 
 namespace WinformsMvc.Example.Controllers
 {
-    public class LoginController : Controller
+    public class ReglesjeuController : Controller
     {
         private IView _view;
         public override IView View
         {
             get
             {
-                return _view ?? new LoginView();
+                return _view ?? new ReglesjeuView();
             }
         }
 

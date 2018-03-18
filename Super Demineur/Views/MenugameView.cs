@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using WinformsMvc.Example.Controllers;
 using MetroFramework;
 using MetroFramework.Forms;
@@ -48,7 +49,10 @@ namespace WinformsMvc.Example.Views
 
         private void rulesTile_Click(object sender, EventArgs e)
         {
-
+            //AppManager.Instance.Load<ReglesjeuController>();
+            ReglesjeuView reglesjeuForm = new ReglesjeuView();
+            reglesjeuForm.Show();
+            Form.Hide();
         }
 
         private void optionsTile_Click(object sender, EventArgs e)
@@ -67,33 +71,37 @@ namespace WinformsMvc.Example.Views
             //AppManager.Instance.Load<DemineurController>();
         }
 
-        void Loading()
-        {
-            
-        }
-
         private void quitButton_Click(object sender, EventArgs e)
         {
-            if (MetroMessageBox.Show(this, "Voulez vous vraiment quitter cette application?", "Quitter l'application", MessageBoxButtons.YesNo, MessageBoxIcon.Question, 170) == DialogResult.Yes)
+            if (MessageBox.Show("Voulez vous vraiment quitter cette application?", "Quitter l'application", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 Application.ExitThread();    
         }
 
         private void creditsButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(compteur == 40)
+            if(compteur == 30)
             {
                 timer1.Stop();
-                AppManager.Instance.Load<DemineurController>();
+                //AppManager.Instance.Load<DemineurController>();
+                DemineurView demineurForm = new DemineurView();
+                demineurForm.Show();
+                Form.Hide();
             }
             else
             {
                 compteur += 1;
             }
+        }
+
+        private void MenugameView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (MessageBox.Show("Voulez vous vraiment quitter cette application?", "Quitter l'application", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                Application.ExitThread();
         }
     }
 }

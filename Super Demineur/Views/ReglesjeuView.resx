@@ -117,4 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="metroLabel1.Text" xml:space="preserve">
+    <value>Le champ de mines est représenté par une grille. Chaque case de la grille peut soit 
+cacher  une mine,  soit être  vide.  Le  but  du  jeu est  de découvrir toutes les cases 
+libres  sans  faire exploser  les mines,  c'est-à-dire  sans  cliquer sur les cases qui les 
+dissimulent. Lorsque  le joueur clique sur une case libre comportant au moins une 
+mine dans l'une de ses cases avoisinantes, un chiffre apparaît, indiquant ce nombre 
+de mines.  Si  en  revanche toutes les cases adjacentes sont vides, une case vide est 
+affichée   et  la  même  opération  est  répétée sur ces cases,  et ce jusqu'à ce que la 
+zone vide soit entièrement délimitée par des chiffres. En comparant  les  différentes 
+informations  récoltées, le joueur peut ainsi progresser dans le déminage du terrain. 
+On  peut  signaler  les  cases  contenant  des  mines  présumées  par  un drapeau en 
+cliquant sur le bouton droit de la souris. </value>
+  </data>
+  <data name="metroLabel2.Text" xml:space="preserve">
+    <value>Le démineur est un jeu   de   réflexion dont  le  but 
+est de localiser des mines cachées dans un champ 
+virtuel  avec pour   seule   indication le nombre de 
+mines dans les  zones  adjacentes. De nombreuses 
+versions gratuites existent, mais la plus connue est 
+celle fournie  avec  l'OS  Microsoft Windows. Cette 
+version particulière l'a popularisé, et la désignation 
+Démineur identifie souvent cette version précise et 
+non le principe général du jeu.</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>59</value>
+  </metadata>
 </root>

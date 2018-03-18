@@ -55,68 +55,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DemineurController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenugameController.cs" />
+    <Compile Include="Controllers\ReglesjeuController.cs" />
     <Compile Include="Models\CaseModel.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\DemineurView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\DemineurView.Designer.cs">
       <DependentUpon>DemineurView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\LoginView.Designer.cs">
-      <DependentUpon>LoginView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\AccountView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\AccountView.Designer.cs">
-      <DependentUpon>AccountView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DefaultView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\DefaultView.Designer.cs">
-      <DependentUpon>DefaultView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MenugameView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\MenugameView.Designer.cs">
       <DependentUpon>MenugameView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReglesjeuView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReglesjeuView.Designer.cs">
+      <DependentUpon>ReglesjeuView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Views\DemineurView.resx">
       <DependentUpon>DemineurView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LoginView.resx">
-      <DependentUpon>LoginView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="Views\AccountView.resx">
-      <DependentUpon>AccountView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\DefaultView.resx">
-      <DependentUpon>DefaultView.cs</DependentUpon>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MenugameView.resx">
       <DependentUpon>MenugameView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReglesjeuView.resx">
+      <DependentUpon>ReglesjeuView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -159,9 +139,6 @@
     <None Include="Resources\bombes-explosifs-icone-9186-128.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bombe_explose_icone.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\prev.png" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\question-mark-1363011_640.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\220px-Minesperfect_windowsxp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

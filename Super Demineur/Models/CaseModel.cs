@@ -15,6 +15,7 @@ namespace WinformsMvc.Example.Models
         private MetroButton _button;
         private int _x;
         private int _y;
+        private double _probaMax;
 
         public CaseModel(int x, int y)
         {
@@ -23,6 +24,8 @@ namespace WinformsMvc.Example.Models
             _button = new MetroButton();
             _x = x;
             _y = y;
+            _probaMax = (double)DemineurView.maxBombes / (DemineurView.Largeur * DemineurView.Longueur);
+            //_probaMax = (double)10 / 81;
         }
 
         public int Etat
@@ -84,6 +87,19 @@ namespace WinformsMvc.Example.Models
                 _y = value;
             }
         }
+
+        public double ProbaMax
+        {
+            get
+            {
+                return _probaMax;
+            }
+            set
+            {
+                _probaMax = value;
+            }
+        }
+
 
         public bool estAdjacent(CaseModel othercase)
         {
@@ -170,6 +186,54 @@ namespace WinformsMvc.Example.Models
             return resultat;
         }
 
+        public int nbreCasesAdjacentesDecouvertes()
+        {
+            int resultat = 0;
+
+            for (int i = X - 1; i < X + 2; i++)
+            {
+                for (int j = Y - 1; j < Y + 2; j++)
+                {
+                    if (i >= 0 && j >= 0 && i < DemineurView.Longueur && j < DemineurView.Largeur)
+                    {
+                        if (!(i == X && j == Y))
+                        {
+                            if (DemineurView.listCases[i, j].Etat == (int)DemineurView.EtatCase.Marqué)
+                            {
+                                resultat += 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return resultat;
+        }
+        
+        public int nbreCasesAdjacentesNormales()
+        {
+            int resultat = 0;
+
+            for (int i = X - 1; i < X + 2; i++)
+            {
+                for (int j = Y - 1; j < Y + 2; j++)
+                {
+                    if (i >= 0 && j >= 0 && i < DemineurView.Longueur && j < DemineurView.Largeur)
+                    {
+                        if (!(i == X && j == Y))
+                        {
+                            if (DemineurView.listCases[i, j].Etat != (int)DemineurView.EtatCase.Revelé)
+                            {
+                                resultat += 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return resultat;
+        }
+        
         public int nbreCasesAdjacentesMinees()
         {
             int resultat = 0;
@@ -192,6 +256,39 @@ namespace WinformsMvc.Example.Models
             }
 
             return resultat;
+        }
+
+        public void modifierProbasVoisins()
+        {
+            if (DemineurView.listCases[X, Y].Etat == (int)DemineurView.EtatCase.Revelé)
+            {
+                DemineurView.listCases[X, Y].ProbaMax = 0;
+            }
+
+            for (int i = X - 1; i < X + 2; i++)
+            {
+                for (int j = Y - 1; j < Y + 2; j++)
+                {
+                    if (i >= 0 && j >= 0 && i < DemineurView.Longueur && j < DemineurView.Largeur)
+                    {
+                        if (!(i == X && j == Y))
+                        {
+                            if (nbreCasesAdjacentesNormales() != 0)
+                            {
+                                double k = (nbreCasesAdjacentesMinees()) / nbreCasesAdjacentesNormales();
+                                if (k > DemineurView.listCases[i, j].ProbaMax)
+                                    DemineurView.listCases[i, j].ProbaMax = k;
+                            }
+
+                            if (nbreCasesAdjacentesDecouvertes() == nbreCasesAdjacentesMinees())
+                            {
+                                DemineurView.listCases[i, j].ProbaMax = 0;
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
     }

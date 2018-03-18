@@ -42,7 +42,7 @@ namespace WinformsMvc.Example.Views
             }
         }
 
-        int maxBombes = 10;
+        public static int maxBombes = 10;
         public static int nbreCasesClicked = 0;
         public static int Longueur = 9;
         public static int Largeur = 9;
@@ -67,6 +67,8 @@ namespace WinformsMvc.Example.Views
         private void DemineurView_Load(object sender, EventArgs e)
         {
             //timer1.Start();
+            // Initialisation de la variable statique
+            nbreCasesClicked = 0;
 
             left = (this.Width - 32 * Longueur) / 2;
             
@@ -89,6 +91,7 @@ namespace WinformsMvc.Example.Views
 
                     listCases[i, j] = new CaseModel(i,j);
                     listCases[i, j].Button = button;
+                    listCases[i, j].ProbaMax = (double)maxBombes / (Largeur * Longueur);
 
                     this.Controls.Add(button);
                 }
@@ -119,6 +122,7 @@ namespace WinformsMvc.Example.Views
         private void InitialiserCases()
         {
             nbreCasesClicked = 0;
+            metroLabel1.Text = "Nb = 0";
             metroTextBox1.Text = "0";
             metroTextBox2.Text = maxBombes.ToString();
             
@@ -130,15 +134,113 @@ namespace WinformsMvc.Example.Views
                     listCases[i, j].Etat = (int)EtatCase.Normal;
                     listCases[i, j].Button.BackgroundImage = Properties.Resources.texture_champ;
                     listCases[i, j].Button.Text = "";
+                    listCases[i, j].ProbaMax = (double)maxBombes / (Largeur * Longueur);
+                }
+            }
+        }
+
+        public void detruireBoutons()
+        {
+            for (int i = 0; i < Longueur; i++)
+            {
+                for (int j = 0; j < Largeur; j++)
+                {
+                    listCases[i, j].Button.BackgroundImage = null;
                 }
             }
         }
 
         private void previousButton_Click(object sender, EventArgs e)
         {
-            AppManager.Instance.Load<MenugameController>();
+            //AppManager.Instance.Load<MenugameController>();
+            MenugameView menuFenetre = new MenugameView();
+            menuFenetre.Show();
+            Form.Dispose();
         }
 
+        public void cliquerGaucheCase(int x, int y)
+        {
+            // Le compte de l'horloge commence lorsqu'on découvre une case
+            if (timer1.Enabled == false)
+            {
+                timer1.Start();
+            }
+
+            if (listCases[x, y].Etat == (int)EtatCase.Normal)
+            {
+                if (listCases[x, y].Danger == (int)Danger.Bombe)
+                {
+                    listCases[x, y].Button.BackgroundImage = Properties.Resources.bombes_explosifs_icone_9186_128;
+
+                    // On arrête l'horloge
+                    if (timer1.Enabled == true)
+                    {
+                        timer1.Stop();
+                    }
+                    revelerPlateau();
+                    MessageBox.Show("Désolé, vous avez laissé exploser une bombe!", "Défaite");
+                    detruireBoutons();
+
+                    InitialiserCases();
+                    GenererBombes();
+                }
+                else
+                {
+                    listCases[x, y].cocherCasesAdjacentes();
+
+                    //MessageBox.Show("Case : X=" + x + ", Y=" + y + "; proba=" + listCases[x, y].ProbaMax.ToString());
+                    listCases[x, y].modifierProbasVoisins();
+                }
+            }
+
+            if (nbreCasesClicked == Longueur * Largeur - maxBombes)
+            {
+                // On arrête l'horloge
+                if (timer1.Enabled == true)
+                {
+                    timer1.Stop();
+                }
+                revelerPlateau();
+                MessageBox.Show("Gagné! Vous avez découvert toutes les bombes, bien joué, démineur!", "Victoire");
+
+                InitialiserCases();
+                GenererBombes();
+            }
+        }
+
+        public void cliquerDroitCase(int x, int y)
+        {
+            switch (listCases[x, y].Etat)
+            {
+                case (int)EtatCase.Normal:
+                    listCases[x, y].Button.BackgroundImage = Properties.Resources.drapeaubleu;
+                    listCases[x, y].Etat = (int)EtatCase.Marqué;
+                    metroTextBox2.Text = (int.Parse(metroTextBox2.Text) - 1).ToString();
+                    break;
+
+                case (int)EtatCase.Marqué:
+                    listCases[x, y].Button.BackgroundImage = Properties.Resources.question_mark_1363011_640;
+                    listCases[x, y].Etat = (int)EtatCase.Indécise;
+                    metroTextBox2.Text = (int.Parse(metroTextBox2.Text) + 1).ToString();
+                    break;
+
+                case (int)EtatCase.Indécise:
+                    listCases[x, y].Button.BackgroundImage = Properties.Resources.texture_champ;
+                    listCases[x, y].Etat = (int)EtatCase.Normal;
+                    break;
+            }
+        }
+
+        public void poserDrapeauCase(int x, int y)
+        {
+            if (listCases[x, y].Etat == (int)EtatCase.Normal)
+            {
+                listCases[x, y].Button.BackgroundImage = Properties.Resources.drapeaubleu;
+                listCases[x, y].Etat = (int)EtatCase.Marqué;
+                metroTextBox2.Text = (int.Parse(metroTextBox2.Text) - 1).ToString();
+            }
+        }
+        
         private void anybutton_Click(object sender, EventArgs e)
         {
             int x, y = 0;
@@ -172,7 +274,8 @@ namespace WinformsMvc.Example.Views
                             timer1.Stop();
                         }
                         revelerPlateau();
-                        MessageBox.Show("Désolé, vous avez laissé exploser une bombe!");
+                        MessageBox.Show("Désolé, vous avez laissé exploser une bombe!", "Défaite");
+                        detruireBoutons();
 
                         InitialiserCases();
                         GenererBombes();
@@ -180,6 +283,7 @@ namespace WinformsMvc.Example.Views
                     else
                     {
                         listCases[x, y].cocherCasesAdjacentes();
+                        listCases[x, y].modifierProbasVoisins();
                     }
                 }
             }
@@ -215,7 +319,7 @@ namespace WinformsMvc.Example.Views
                     timer1.Stop();
                 }
                 revelerPlateau();
-                MessageBox.Show("Gagné! Vous avez découvert toutes les bombes, bien joué, démineur!");
+                MessageBox.Show("Gagné! Vous avez découvert toutes les bombes, bien joué, démineur!", "Victoire");
                 
                 InitialiserCases();
                 GenererBombes();
@@ -249,6 +353,58 @@ namespace WinformsMvc.Example.Views
         private void timer1_Tick(object sender, EventArgs e)
         {
             metroTextBox1.Text = (int.Parse(metroTextBox1.Text) + 1).ToString();
+        }
+
+        private void DemineurView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.ExitThread();
+        }
+
+        private void resolutionIA_Click(object sender, EventArgs e)
+        {
+            metroLabel1.Text = "NB = " + nbreCasesClicked;
+            if (nbreCasesClicked < 3)
+            {
+                int a = new Random(DateTime.Now.Millisecond).Next(0, Longueur);
+                int b = new Random(DateTime.Now.Millisecond).Next(0, Largeur);
+
+                while (a == b)
+                {
+                    a = new Random(DateTime.Now.Millisecond).Next(0, Longueur);
+                    b = new Random(DateTime.Now.Millisecond).Next(0, Largeur);
+                }
+
+                cliquerGaucheCase(a, b);
+                metroLabel1.Text = "NB = " + nbreCasesClicked;
+            }
+            else
+            {
+                for (int i = 0; i < Longueur; i++)
+                {
+                    for (int j = 0; j < Largeur; j++)
+                    {
+                        if(listCases[i, j].Etat == (int)EtatCase.Revelé)
+                            listCases[i, j].modifierProbasVoisins();
+
+                        if (listCases[i, j].ProbaMax == 1)
+                        {
+                            poserDrapeauCase(i, j);
+                        }
+                        if (listCases[i, j].ProbaMax == 0 && listCases[i, j].Etat == (int)EtatCase.Normal)
+                        {
+                            cliquerGaucheCase(i, j);
+                        }
+                    }
+                }
+                
+                metroLabel1.Text = "NB = " + nbreCasesClicked;
+            }
+        }
+
+        private void recommencerBtn_Click(object sender, EventArgs e)
+        {
+            InitialiserCases();
+            GenererBombes();
         }
     }
 }

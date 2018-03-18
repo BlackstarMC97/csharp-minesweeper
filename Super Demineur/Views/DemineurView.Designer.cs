@@ -33,6 +33,9 @@
             this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clockPicture = new System.Windows.Forms.PictureBox();
             this.previousButton = new MetroFramework.Controls.MetroButton();
@@ -119,12 +122,47 @@
             this.metroButton2.TabIndex = 5;
             this.metroButton2.Text = "Réveler la carte";
             this.metroButton2.UseSelectable = true;
+            this.metroButton2.Visible = false;
             this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
             // timer1
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.Location = new System.Drawing.Point(155, 402);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(134, 23);
+            this.metroButton1.TabIndex = 6;
+            this.metroButton1.Text = "Résolution par IA forte";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.resolutionIA_Click);
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel1.Location = new System.Drawing.Point(16, 117);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(43, 15);
+            this.metroLabel1.TabIndex = 7;
+            this.metroLabel1.Text = "NB = 0";
+            // 
+            // metroButton3
+            // 
+            this.metroButton3.BackColor = System.Drawing.Color.LimeGreen;
+            this.metroButton3.BackgroundImage = global::WinformsMvc.Example.Properties.Resources.disk;
+            this.metroButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.metroButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.metroButton3.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton3.Location = new System.Drawing.Point(17, 72);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(32, 32);
+            this.metroButton3.TabIndex = 8;
+            this.metroButton3.UseSelectable = true;
+            this.metroButton3.Click += new System.EventHandler(this.recommencerBtn_Click);
             // 
             // pictureBox1
             // 
@@ -148,7 +186,7 @@
             // 
             // previousButton
             // 
-            this.previousButton.BackColor = System.Drawing.Color.Transparent;
+            this.previousButton.BackColor = System.Drawing.Color.LimeGreen;
             this.previousButton.BackgroundImage = global::WinformsMvc.Example.Properties.Resources.prev;
             this.previousButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.previousButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -165,6 +203,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 456);
+            this.Controls.Add(this.metroButton3);
+            this.Controls.Add(this.metroLabel1);
+            this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.metroButton2);
             this.Controls.Add(this.metroTextBox2);
             this.Controls.Add(this.pictureBox1);
@@ -175,12 +216,14 @@
             this.Name = "DemineurView";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Text = "Le démineur";
+            this.Text = "Le Démineur";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DemineurView_FormClosed);
             this.Load += new System.EventHandler(this.DemineurView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clockPicture)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -193,5 +236,8 @@
         private MetroFramework.Controls.MetroTextBox metroTextBox2;
         private MetroFramework.Controls.MetroButton metroButton2;
         private System.Windows.Forms.Timer timer1;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroButton metroButton3;
     }
 }

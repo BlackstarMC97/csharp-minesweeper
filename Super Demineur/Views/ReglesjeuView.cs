@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using WinformsMvc.Example.Controllers;
 
 namespace WinformsMvc.Example.Views
 {
-    public partial class AccountView : Form, IView
+    public partial class ReglesjeuView : MetroForm, IView
     {
-        public AccountView()
+        public ReglesjeuView()
         {
             InitializeComponent();
         }
@@ -32,16 +33,28 @@ namespace WinformsMvc.Example.Views
             {
                 return Text;
             }
-
             set
             {
                 Text = value;
             }
         }
 
-        private void labelBack_Click(object sender, EventArgs e)
+        private void ReglesjeuView_Load(object sender, EventArgs e)
         {
-            AppManager.Instance.Load<DefaultController>();
+
+        }
+
+        private void backbutton_Click(object sender, EventArgs e)
+        {
+            //AppManager.Instance.Load<MenugameController>();
+            MenugameView menuFenetre = new MenugameView();
+            menuFenetre.Show();
+            Form.Dispose();
+        }
+
+        private void ReglesjeuView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.ExitThread();
         }
     }
 }

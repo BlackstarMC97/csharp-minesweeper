@@ -63,9 +63,9 @@ namespace WinformsMvc.Example.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bombe_explose_icone {
+        internal static System.Drawing.Bitmap _220px_Minesperfect_windowsxp {
             get {
-                object obj = ResourceManager.GetObject("bombe_explose_icone", resourceCulture);
+                object obj = ResourceManager.GetObject("220px-Minesperfect_windowsxp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +156,16 @@ namespace WinformsMvc.Example.Properties {
         internal static System.Drawing.Bitmap question_mark_1363011_640 {
             get {
                 object obj = ResourceManager.GetObject("question-mark-1363011_640", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh {
+            get {
+                object obj = ResourceManager.GetObject("refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

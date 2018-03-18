@@ -165,6 +165,13 @@
             this.metroLabel1.Text = "Chargement en cours, veuillez patienter...";
             this.metroLabel1.Visible = false;
             // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 200;
+            this.toolTip1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.toolTip1.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.toolTip1.IsBalloon = true;
+            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
@@ -175,7 +182,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackImage = ((System.Drawing.Image)(resources.GetObject("$this.BackImage")));
             this.BackImagePadding = new System.Windows.Forms.Padding(10, 10, 0, 0);
-            this.BackMaxSize = 200;
+            this.BackMaxSize = 150;
             this.ClientSize = new System.Drawing.Size(560, 385);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.optionsTile);
@@ -189,8 +196,9 @@
             this.Name = "MenugameView";
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Text = "Démineur";
+            this.Text = "Le Démineur";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MenugameView_FormClosed);
             this.Load += new System.EventHandler(this.MenugameView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
