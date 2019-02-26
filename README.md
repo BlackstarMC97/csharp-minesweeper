@@ -1,4 +1,4 @@
-# MboaGeek Demineur - Jeu du démineur avec un modèle MVC et une IA par force brute
+Csharp Minesweeper by Mboageek - Jeu du démineur avec un modèle MVC et une IA par force brute
 
 ## Mode d'installation
 
